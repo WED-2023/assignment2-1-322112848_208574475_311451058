@@ -1,25 +1,17 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link :to="{ name: 'main' }">Vue Recipes</router-link>|
-      <router-link :to="{ name: 'search' }">Search</router-link>|
-      {{ !$root.store.username }}
-      <span v-if="!$root.store.username">
-        Guest:
-        <router-link :to="{ name: 'register' }">Register</router-link>|
-        <router-link :to="{ name: 'login' }">Login</router-link>|
-      </span>
-      <span v-else>
-        {{ $root.store.username }}: <button @click="Logout">Logout</button>|
-      </span>
-    </div>
+    <TopNav></TopNav>
     <router-view />
   </div>
 </template>
 
 <script>
+import TopNav from "./components/TopNav.vue"
 export default {
   name: "App",
+  components: {
+    TopNav
+  },
   methods: {
     Logout() {
       this.$root.store.logout();
@@ -44,16 +36,8 @@ export default {
   min-height: 100vh;
 }
 
-#nav {
-  padding: 30px;
+.goto{
+  color: #e2e0ff;
 }
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
 </style>
