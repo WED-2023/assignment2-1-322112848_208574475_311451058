@@ -35,10 +35,6 @@
   </script>
   
   <style scoped>
-  .container {
-    max-width: 800px;
-    margin: 0 auto;
-  }
   h1,h2{
     color: forestgreen;
   }

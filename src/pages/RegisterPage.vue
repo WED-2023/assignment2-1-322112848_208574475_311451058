@@ -5,7 +5,7 @@
       <b-form-group
         id="input-group-username"
         label-cols-sm="3"
-        label="Username:"
+        label="User name:"
         label-for="username"
       >
         <b-form-input
@@ -21,7 +21,73 @@
           Username length should be between 3-8 characters long
         </b-form-invalid-feedback>
         <b-form-invalid-feedback v-if="!$v.form.username.alpha">
-          Username alpha
+          Username should contain only English characters
+        </b-form-invalid-feedback>
+      </b-form-group>
+
+      <b-form-group
+        id="input-group-firstName"
+        label-cols-sm="3"
+        label="First name:"
+        label-for="firstName"
+      >
+        <b-form-input
+          id="firstName"
+          v-model="$v.form.firstName.$model"
+          type="text"
+          :state="validateState('firstName')"
+        ></b-form-input>
+        <b-form-invalid-feedback v-if="!$v.form.firstName.required">
+          First name is required
+        </b-form-invalid-feedback>
+        <b-form-invalid-feedback v-else-if="!$v.form.firstName.length">
+          Please type at least 2 characters
+        </b-form-invalid-feedback>
+        <b-form-invalid-feedback v-if="!$v.form.firstName.alpha">
+          First name should contain only English characters
+        </b-form-invalid-feedback>
+      </b-form-group>
+
+      <b-form-group
+        id="input-group-lastname"
+        label-cols-sm="3"
+        label="Last name:"
+        label-for="lastName"
+      >
+        <b-form-input
+          id="lastName"
+          v-model="$v.form.lastName.$model"
+          type="text"
+          :state="validateState('lastName')"
+        ></b-form-input>
+        <b-form-invalid-feedback v-if="!$v.form.lastName.required">
+          Last name is required
+        </b-form-invalid-feedback>
+        <b-form-invalid-feedback v-else-if="!$v.form.lastName.length">
+          Please type at least 2 characters
+        </b-form-invalid-feedback>
+        <b-form-invalid-feedback v-if="!$v.form.lastName.alpha">
+          Last name should contain only English characters
+        </b-form-invalid-feedback>
+      </b-form-group>
+
+      <b-form-group
+        id="input-group-email"
+        label-cols-sm="3"
+        label="Email address:"
+        label-for="email"
+      >
+        <b-form-input
+          id="email"
+          v-model="$v.form.email.$model"
+          type="text"
+          :state="validateState('email')"
+        ></b-form-input>
+        <b-form-invalid-feedback v-if="!$v.form.email.required">
+          Email address is required
+        </b-form-invalid-feedback>
+        <b-form-invalid-feedback v-else-if="!$v.form.email.email">
+          Please enter correct Email address
         </b-form-invalid-feedback>
       </b-form-group>
 
@@ -65,6 +131,16 @@
           v-if="$v.form.password.required && !$v.form.password.length"
         >
           Have length between 5-10 characters long
+        </b-form-invalid-feedback>
+        <b-form-invalid-feedback
+          v-if="$v.form.password.required && !$v.form.password.containNumber"
+        >
+          The password needs to contain at least 1 numeric character
+        </b-form-invalid-feedback>
+        <b-form-invalid-feedback
+          v-if="$v.form.password.required && !$v.form.password.containSpecialChar"
+        >
+        The password needs to contain at least 1 special character
         </b-form-invalid-feedback>
       </b-form-group>
 
@@ -161,11 +237,27 @@ export default {
       },
       password: {
         required,
-        length: (p) => minLength(5)(p) && maxLength(10)(p)
+        length: (p) => minLength(5)(p) && maxLength(10)(p),
+        containNumber: (value) => /\d/.test(value),
+        containSpecialChar: (value) => /[!@#$%^&*(),.?":{}|<>]/.test(value)
       },
       confirmedPassword: {
         required,
         sameAsPassword: sameAs("password")
+      },
+      firstName: {
+        required,
+        length: (f) => minLength(2)(f),
+        alpha
+      },
+      lastName: {
+        required,
+        length: (l) => minLength(2)(l),
+        alpha
+      },
+      email: {
+        required,
+        email
       }
     }
   },
@@ -216,6 +308,7 @@ export default {
       // console.log("register method go");
       this.Register();
     },
+    
     onReset() {
       this.form = {
         username: "",
