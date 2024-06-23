@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" >
     <TopNav></TopNav>
     <router-view />
   </div>
@@ -39,5 +39,10 @@ export default {
 .goto{
   color: #e2e0ff;
 }
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    margin-top: 5%;
+  }
 
 </style>

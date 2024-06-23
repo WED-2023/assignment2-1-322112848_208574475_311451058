@@ -1,4 +1,5 @@
 <template>
+    <div class="nav-bar">
         <b-navbar toggleable="lg" type="light" variant="success" sticky="true">
         <b-navbar-brand><router-link :to="{ name: 'main' }" class="goto"><b>Vue Recipes</b></router-link></b-navbar-brand>
 
@@ -9,14 +10,15 @@
                 <router-link :to="{ name: 'search' }" class="goto">Search</router-link>
             </b-nav-item>
         </b-navbar-nav>
+        
         <b-navbar-nav>
             <b-nav-item>
-                <router-link :to="{ name: 'NewRecipe' }" class="goto" v-if="$root.store.username">New Recipe</router-link>
+                <router-link :to="{ name: 'about' }" class="goto">About</router-link>
             </b-nav-item>
         </b-navbar-nav>
         <b-navbar-nav>
             <b-nav-item>
-                <router-link :to="{ name: 'about' }" class="goto">About</router-link>
+                <router-link :to="{ name: 'NewRecipe' }" class="goto" v-if="$root.store.username">New Recipe</router-link>
             </b-nav-item>
         </b-navbar-nav>
         <b-navbar-nav>
@@ -41,12 +43,30 @@
             </b-nav-item-dropdown>
       </b-navbar-nav>
   </b-navbar>
+</div>
 </template>
+
+<script>
+export default {
+  name: "TopNav",
+  methods: {
+    Logout() {
+      this.$root.store.logout();
+      this.$root.toast("Logout", "User logged out successfully", "success");
+
+      this.$router.push("/").catch(() => {
+        this.$forceUpdate();
+      });
+    }
+  }
+};
+</script>
 
 <style>
     .dropDown{
         color: #1d7238
     }
+
 </style>
 
 <!-- dropdown example
