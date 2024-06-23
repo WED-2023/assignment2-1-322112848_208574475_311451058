@@ -42,7 +42,7 @@ export default {
 .container {
     max-width: 800px;
     margin: 0 auto;
-    margin-top: 2%;
+    margin-top: 5%;
   }
 
 </style>

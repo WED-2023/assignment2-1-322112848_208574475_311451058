@@ -72,7 +72,7 @@
 </template>
 
 <script>
-import { required } from "vuelidate/lib/validators";
+import { required,minLength,maxLength } from "vuelidate/lib/validators";
 import {mockLogin} from "../services/auth.js"
 export default {
   name: "Login",

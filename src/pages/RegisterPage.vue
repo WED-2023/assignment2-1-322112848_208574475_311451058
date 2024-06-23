@@ -5,7 +5,7 @@
       <b-form-group
         id="input-group-username"
         label-cols-sm="3"
-        label="User name:"
+        label="Username:"
         label-for="username"
       >
         <b-form-input
@@ -308,7 +308,7 @@ export default {
       // console.log("register method go");
       this.Register();
     },
-    
+
     onReset() {
       this.form = {
         username: "",
