@@ -11,7 +11,6 @@ import RecipePreviewList from '../components/RecipePreviewList.vue';
 
 export default {
   components: {
-    // AddRecipeModal,
     RecipePreviewList
   },
   data() {
