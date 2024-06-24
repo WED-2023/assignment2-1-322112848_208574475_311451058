@@ -17,6 +17,9 @@
         <b-form-invalid-feedback>
           Username is required
         </b-form-invalid-feedback>
+        <b-form-invalid-feedback v-if="!$v.form.username.length">
+          The username dont exicts try again
+        </b-form-invalid-feedback>
       </b-form-group>
 
       <b-form-group
@@ -33,6 +36,11 @@
         ></b-form-input>
         <b-form-invalid-feedback>
           Password is required
+        </b-form-invalid-feedback>
+        <b-form-invalid-feedback
+          v-if="$v.form.password.required && !$v.form.password.length"
+        >
+          This can not be a passwork on our site try again please
         </b-form-invalid-feedback>
       </b-form-group>
 
@@ -64,7 +72,7 @@
 </template>
 
 <script>
-import { required } from "vuelidate/lib/validators";
+import { required,minLength,maxLength } from "vuelidate/lib/validators";
 import {mockLogin} from "../services/auth.js"
 export default {
   name: "Login",
@@ -80,10 +88,12 @@ export default {
   validations: {
     form: {
       username: {
-        required
+        required,
+        length: (u) => minLength(3)(u) && maxLength(8)(u)
       },
       password: {
-        required
+        required,
+        length: (p) => minLength(5)(p) && maxLength(10)(p)
       }
     }
   },

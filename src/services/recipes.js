@@ -15,4 +15,13 @@ export function mockGetRecipesPreview(amount = 1) {
 export function mockGetRecipeFullDetails(recipeId) {
     return { data: { recipe: recipe_full_view } } ;
   }
+
+export function mockSearchRecipes(text,diet,cusine,intolerance) {
+  let recipes = [];
+  for(let i = 0; i < 1; i++){
+    recipes.push(recipe_preview);
+  }
+
+  return { data: { recipes: recipes } };
+}
   

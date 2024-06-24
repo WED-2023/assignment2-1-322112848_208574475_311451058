@@ -1,6 +1,13 @@
 <template>
+  <div>
+  <section class="hero">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h1>Welcome to Food Heaven</h1>
+        <p>Discover delicious meals delivered to your door</p>
+      </div>
+    </section>
   <div class="container">
-    <h1 class="title">Main Page</h1>
     <RecipePreviewList title="Randome Recipes" class="RandomRecipes center" />
     <router-link v-if="!$root.store.username" to="/login" tag="button">You need to Login to vue this</router-link>
     {{ !$root.store.username }}
@@ -19,6 +26,7 @@
       Centeredasdasdad
     </div>-->
   </div>
+</div>
 </template>
 
 <script>
@@ -42,4 +50,46 @@ export default {
   pointer-events: none;
   cursor: default;
 }
+.hero {
+      position: relative;
+      height: 70vh;
+      background: url('../assets/main_pic.jpg') no-repeat center center;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      width: 100vw;
+      overflow: hidden;
+    }
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
+    .hero-content h1 {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+    }
+    .hero-content p {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .hero-content .btn {
+      padding: 0.75rem 1.5rem;
+      font-size: 1.25rem;
+    }
+    .wrapper {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+      
 </style>
