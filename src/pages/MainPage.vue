@@ -25,7 +25,7 @@
           }"
           disabled
         ></RecipePreviewList>
-        <LoginBox title="Please sign in to see this content"></LoginBox>
+        <LoginBox v-else title="Please sign in to see this content"></LoginBox>
       </div>
     </div>
     <!-- <div
