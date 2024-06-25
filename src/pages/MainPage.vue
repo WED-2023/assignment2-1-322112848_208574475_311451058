@@ -8,9 +8,11 @@
       </div>
     </section>
   <div class="container">
+    <div class="section left">
     <RecipePreviewList title="Randome Recipes" class="RandomRecipes center" />
-    <router-link v-if="!$root.store.username" to="/login" tag="button">You need to Login to vue this</router-link>
-    {{ !$root.store.username }}
+    </div>
+    <div class="section right">
+    <router-link v-if="!$root.store.username" :to="{ name: 'login' }" tag="button">You need to Login to vue this</router-link>
     <RecipePreviewList
       title="Last Viewed Recipes"
       :class="{
@@ -20,6 +22,7 @@
       }"
       disabled
     ></RecipePreviewList>
+  </div>
     <!-- <div
       style="position: absolute;top: 70%;left: 50%;transform: translate(-50%, -50%);"
     >
@@ -49,6 +52,11 @@ export default {
 ::v-deep .blur .recipe-preview {
   pointer-events: none;
   cursor: default;
+}
+.section {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
 }
 .hero {
       position: relative;
