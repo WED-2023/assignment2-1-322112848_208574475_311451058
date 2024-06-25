@@ -7,22 +7,27 @@
         <p>Discover delicious meals delivered to your door</p>
       </div>
     </section>
-  <div class="container">
-    <div class="section left">
-    <RecipePreviewList title="Randome Recipes" class="RandomRecipes center" />
+  <div class="wrapper border rounded shadow-sm h-md-250">
+  <div class="container-fluid">
+    <div class="row mb-2 no-gutters">
+      <div class="col p-4 d-flex flex-column position-static overflow-hidden">
+        <div class="d-flex flex-wrap justify-content-between">
+          <h3>Random Recipes</h3>
+          <RecipePreviewList class="RandomRecipes center" />
+        </div>
+      </div>
+      <div class="col p-4 d-flex flex-column position-static overflow-hidden">
+        <h3>Last viewed recipes</h3>
+        <RecipePreviewList v-if="$root.store.username"
+          :class="{
+            RandomRecipes: true,
+            center: true
+          }"
+          disabled
+        ></RecipePreviewList>
+        <LoginBox title="Please sign in to see this content"></LoginBox>
+      </div>
     </div>
-    <div class="section right">
-    <router-link v-if="!$root.store.username" :to="{ name: 'login' }" tag="button">You need to Login to vue this</router-link>
-    <RecipePreviewList
-      title="Last Viewed Recipes"
-      :class="{
-        RandomRecipes: true,
-        blur: !$root.store.username,
-        center: true
-      }"
-      disabled
-    ></RecipePreviewList>
-  </div>
     <!-- <div
       style="position: absolute;top: 70%;left: 50%;transform: translate(-50%, -50%);"
     >
@@ -30,13 +35,16 @@
     </div>-->
   </div>
 </div>
+</div>
 </template>
 
 <script>
 import RecipePreviewList from "../components/RecipePreviewList";
+import LoginBox from "../components/LoginBox";
 export default {
   components: {
-    RecipePreviewList
+    RecipePreviewList,
+    LoginBox
   }
 };
 </script>
@@ -67,7 +75,7 @@ export default {
       justify-content: center;
       align-items: center;
       color: white;
-      width: 100vw;
+      width: 100%;
       overflow: hidden;
     }
     .hero-overlay {
@@ -97,7 +105,8 @@ export default {
     .wrapper {
       display: flex;
       flex-direction: column;
-      min-height: 100vh;
+      margin: 5%;
+      background-color: #dad7cd;
     }
       
 </style>
