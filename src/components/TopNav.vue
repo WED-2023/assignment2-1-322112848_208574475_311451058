@@ -1,6 +1,6 @@
 <template>
     <div class="nav-bar">
-        <b-navbar toggleable="lg" type="light" variant="success" sticky="true">
+        <b-navbar toggleable="lg" type="light" variant="success" fixed="top">
         <b-navbar-brand><router-link :to="{ name: 'main' }" class="goto"><b>Vue Recipes</b></router-link></b-navbar-brand>
 
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
@@ -65,6 +65,9 @@ export default {
 <style>
     .dropDown{
         color: #1d7238
+    }
+    .nav-bar{
+        position: relative;
     }
 
 </style>

@@ -1,9 +1,9 @@
 <template>
-  <div class="container mt-5">
+  <form class="container mt-5" >
     <h1 class="title">Explore our recipes</h1>
     <div class="row mb-4">
       <div class="col-md-4">
-        <b-form-input v-model="searchQuery" placeholder="Search by name"></b-form-input>
+        <b-form-input v-model="query.searchQuery" placeholder="Search by name"></b-form-input>
       </div>
     </div>
     <div class="row mb-2">
@@ -13,16 +13,19 @@
     </div>
     <div class="row mb-4">
       <div class="col-md-2">
-        <b-form-select id="cuisine" v-model="cuisine" :options="cuisines">Cuisine</b-form-select>
+        <b-form-select id="cuisine" v-model="query.cuisine"  :options="cuisines" placeholder="Cuisine"></b-form-select>
       </div>
       <div class="col-md-2">
-        <b-form-select id="diet" v-model="diet" :options="diets">Diet</b-form-select>
+        <b-form-select id="diet" v-model="query.diet" :options="diets"  placeholder="Diet"></b-form-select>
       </div>
       <div class="col-md-2">
-        <b-form-select id="intolerance" v-model="intolerance" :options="intolerances"></b-form-select>
+        <b-form-select id="intolerance" v-model="query.intolerance" :options="intolerances"  placeholder="Intolerances"></b-form-select>
       </div>
-      <div class="col-md-2">
-        <b-button variant="success" @click="searchRecipes">Search</b-button>
+      <div class="col-sm-2">
+        <b-button variant="success" @click="searchRecipes">Search</b-button>    
+      </div>
+        <div class="col-sm-2">
+        <b-button type="reset" variant="danger" placeholder="Popularity" @click="onReset">Reset</b-button>
       </div>
     </div>
     <div class="row mb-2">
@@ -50,28 +53,30 @@
         </b-card>
       </div>
     </div>
-  </div>
+  </form>
 </template>
 
 <script>
   import cuisines from "../assets/cuisines";
   import diets from "../assets/diets";
   import intolerances from "../assets/intolerances";
+  import RecipePreviewList from '../components/RecipePreviewList.vue';
 export default {
   data() {
     return {
-      searchQuery: '',
+      query:{ searchQuery: '',
       cuisine: null,
       diet: null,
       intolerance: null,
-      sortBy: 'popularity',
+      sortBy: { value: 'popularity', text: 'Popularity' }
+    },
       sortOptions: [
         { value: 'popularity', text: 'Popularity' },
         { value: 'likes', text: 'Likes' }
       ],
-      cuisines: [{ value: null, text: "Cuisines", disabled: true }],
-      diets: [{ value: null, text: "Diets", disabled: true }],
-      intolerances: [{ value: null, text: "Intolerances", disabled: true }],
+      cuisines: [{ value: null, text: "Cuisines", disabled: false }],
+      diets: [{ value: null, text: "Diets", disabled: false }],
+      intolerances: [{ value: null, text: "Intolerances", disabled: false }],
       recipes: []
     };
   },
@@ -112,6 +117,16 @@ export default {
       } catch (error) {
         console.log(error);
       }
+    },
+    
+    onReset() {
+      this.query= {
+      searchQuery: '',
+      cuisine: { value: null, text: 'Cuisines' },
+      diet: { value: null, text: 'Diets' },
+      intolerance: { value: null, text: 'Intolerances' },
+      sortBy: 'popularity'
+      };
     }
   }
 };
