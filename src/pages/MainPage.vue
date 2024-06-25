@@ -69,7 +69,7 @@ export default {
 .hero {
       position: relative;
       height: 70vh;
-      background: url('../assets/main_pic.jpg') no-repeat center center;
+      background: url('../assets/Images/main_pic.jpg') no-repeat center center;
       background-size: cover;
       display: flex;
       justify-content: center;
@@ -106,7 +106,7 @@ export default {
       display: flex;
       flex-direction: column;
       margin: 5%;
-      background-color: #dad7cd;
+      background-color: #f5fff9;
     }
       
 </style>
