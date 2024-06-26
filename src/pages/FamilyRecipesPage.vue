@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container mt-5 border rounded shadow-sm p-4">
     <h1>Family Recipes</h1>
     <div class="recipe-list">
       <b-card

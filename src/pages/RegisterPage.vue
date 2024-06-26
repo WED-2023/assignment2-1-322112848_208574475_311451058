@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="wrapper border rounded shadow-sm h-md-250">
     <h1 class="title">Register</h1>
     <b-form @submit.prevent="onRegister" @reset.prevent="onReset">
       <b-form-group
