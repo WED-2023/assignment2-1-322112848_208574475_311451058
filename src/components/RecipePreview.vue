@@ -14,7 +14,12 @@
       <li>{{ recipe.aggregateLikes }} likes</li>
     </ul>
     <div class="buttons">
-      <b-button @click.stop="likeRecipe(recipe)" variant="outline-danger" class="like-button">
+      <b-button 
+        @click.stop="likeRecipe" 
+        :disabled="recipe.liked" 
+        :variant="recipe.liked ? 'danger' : 'outline-danger'" 
+        class="like-button"
+      >
         <i class="fas fa-heart"></i>
       </b-button>
       <router-link :to="{ name: 'recipe', params: { recipeId: recipe.id } }">
@@ -26,54 +31,17 @@
 
 <script>
 export default {
-  // mounted() {
-  //   this.axios.get(this.recipe.image).then((i) => {
-  //     this.image_load = true;
-  //   });
-  // },
-  // data() {
-  //   return {
-  //     image_load: true
-  //   };
-  // },
   props: {
     recipe: {
       type: Object,
       required: true
-    },
-
-    methods: {
-    likeRecipe(recipe) {
-      recipe.aggregateLikes += 1;
     }
   },
-
-    // id: {
-    //   type: Number,
-    //   required: true
-    // },
-
-    // title: {
-    //   type: String,
-    //   required: true
-    // },
-    // readyInMinutes: {
-    //   type: Number,
-    //   required: true
-    // },
-
-
-    // image: {
-    //   type: String,
-    //   required: true
-    // },
-    // aggregateLikes: {
-    //   type: Number,
-    //   required: false,
-    //   default() {
-    //     return undefined;
-    //   }
-    // }
+  methods: {
+    likeRecipe() {
+      this.recipe.aggregateLikes += 1;
+      this.recipe.liked = true;
+    }
   }
 };
 </script>
@@ -134,5 +102,4 @@ export default {
 .buttons .b-button {
   flex: 1;
 }
-
 </style>
