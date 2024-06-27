@@ -56,7 +56,7 @@ export default {
           title: 'Cheesecake',
           description: 'A delicious creamy cheesecake with a graham cracker crust.',
           time: 90,
-          images: ['src/assets/cheesecake.jpg'],
+          images: ["https://www.cookingclassy.com/wp-content/uploads/2023/02/honey-mustard-chicken-01-1024x1536.jpg"],
           aggregateLikes: 0,
           liked: false,
           ingredients: ['cream cheese', 'sugar', 'eggs', 'petibar']
@@ -66,7 +66,7 @@ export default {
           title: 'Chicken in Honey and Mustard',
           description: 'Juicy chicken breasts cooked in a sweet and tangy honey mustard sauce.',
           time: 30,
-          images: ['src/assets/chicken_honey_and_mustard.jpg'],
+          images: ["assets/Images/chicken_honey_and_mustard.jpg"],
           aggregateLikes: 0,
           liked: false,
           ingredients: ['chicken breasts', 'honey', 'mustard', 'olive oil', 'garlic']
@@ -76,7 +76,7 @@ export default {
           title: 'Salmon in Pesto Sauce',
           description: 'Tender salmon fillets topped with a flavorful pesto sauce.',
           time: 25,
-          images: ['src/assets/salmon_in_pesto.jpg'],
+          images: ["salmon_in_pesto.jpg"],
           aggregateLikes: 0,
           liked: false,
           ingredients: ['salmon fillets', 'pesto sauce', 'lemon', 'olive oil']

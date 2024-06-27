@@ -7,19 +7,27 @@
         <p>Discover delicious meals delivered to your door</p>
       </div>
     </section>
-  <div class="container">
-    <RecipePreviewList title="Randome Recipes" class="RandomRecipes center" />
-    <router-link v-if="!$root.store.username" to="/login" tag="button">You need to Login to vue this</router-link>
-    {{ !$root.store.username }}
-    <RecipePreviewList
-      title="Last Viewed Recipes"
-      :class="{
-        RandomRecipes: true,
-        blur: !$root.store.username,
-        center: true
-      }"
-      disabled
-    ></RecipePreviewList>
+  <div class="wrapper border rounded shadow-sm h-md-250">
+  <div class="container-fluid">
+    <div class="row mb-2 no-gutters">
+      <div class="col p-4 d-flex flex-column position-static overflow-hidden">
+        <div class="d-flex flex-wrap justify-content-between">
+          <h3>Random Recipes</h3>
+          <RecipePreviewList class="RandomRecipes center" />
+        </div>
+      </div>
+      <div class="col p-4 d-flex flex-column position-static overflow-hidden">
+        <h3>Last viewed recipes</h3>
+        <RecipePreviewList v-if="$root.store.username"
+          :class="{
+            RandomRecipes: true,
+            center: true
+          }"
+          disabled
+        ></RecipePreviewList>
+        <LoginBox v-else title="Please sign in to see this content"></LoginBox>
+      </div>
+    </div>
     <!-- <div
       style="position: absolute;top: 70%;left: 50%;transform: translate(-50%, -50%);"
     >
@@ -27,13 +35,16 @@
     </div>-->
   </div>
 </div>
+</div>
 </template>
 
 <script>
 import RecipePreviewList from "../components/RecipePreviewList";
+import LoginBox from "../components/LoginBox";
 export default {
   components: {
-    RecipePreviewList
+    RecipePreviewList,
+    LoginBox
   }
 };
 </script>
@@ -50,16 +61,21 @@ export default {
   pointer-events: none;
   cursor: default;
 }
+.section {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
 .hero {
       position: relative;
       height: 70vh;
-      background: url('../assets/main_pic.jpg') no-repeat center center;
+      background: url('../assets/Images/main_pic.jpg') no-repeat center center;
       background-size: cover;
       display: flex;
       justify-content: center;
       align-items: center;
       color: white;
-      width: 100vw;
+      width: 100%;
       overflow: hidden;
     }
     .hero-overlay {
@@ -89,7 +105,8 @@ export default {
     .wrapper {
       display: flex;
       flex-direction: column;
-      min-height: 100vh;
+      margin: 5%;
+      background-color: #f5fff9;
     }
       
 </style>
