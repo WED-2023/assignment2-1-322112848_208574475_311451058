@@ -1,5 +1,5 @@
 <template>
-    <div class="container mt-5">
+  <div class="wrapper border rounded shadow-sm h-md-250 p-4">
       <h1>About Us</h1>
       <p>
         Welcome to our recipe site! This project was constructed by three students with a passion for cooking and web development.

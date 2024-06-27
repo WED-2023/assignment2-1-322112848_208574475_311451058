@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container mt-5 border rounded shadow-sm p-4">
     <h1>My Favorites</h1>
     <RecipePreviewList title="My Favorites" :recipes="favoriteRecipes" />
   </div>

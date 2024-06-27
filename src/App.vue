@@ -44,8 +44,8 @@ export default {
 }
 .container {
     max-width: 800px;
-    margin: 0 auto;
-    margin-top: 5%;
+    margin: 5% auto;
+    background-color: #f5fff9;
   }
 html,body{
   height: 100%;
@@ -54,4 +54,10 @@ html,body{
   margin: 0;
   padding: 0;
 }
+.wrapper {
+      display: flex;
+      flex-direction: column;
+      margin: 5%;
+      background-color: #f5fff9;
+    }
 </style>

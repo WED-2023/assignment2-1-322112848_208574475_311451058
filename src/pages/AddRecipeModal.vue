@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container mt-5 border rounded shadow-sm p-4">
     <h1 class="title">Add Recipe</h1>
     <form @submit.prevent="submitRecipe">
       <div class="form-group">

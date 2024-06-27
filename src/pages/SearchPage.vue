@@ -1,9 +1,16 @@
 <template>
-  <form class="container mt-5" >
+  <form class="container mt-5 border rounded shadow-sm p-4" >
     <h1 class="title">Explore our recipes</h1>
     <div class="row mb-4">
-      <div class="col-md-4">
+      <div class="col-md-6">
         <b-form-input v-model="query.searchQuery" placeholder="Search by name"></b-form-input>
+      </div>
+      <div class="col-md-2"></div>
+      <div class="col-sm-2">
+        <h5>Sort by:</h5>
+      </div>
+      <div class="col-md-2">
+        <b-form-select v-model="sortBy" :options="sortOptions"></b-form-select>
       </div>
     </div>
     <div class="row mb-2">
@@ -24,18 +31,9 @@
       <div class="col-sm-2">
         <b-button variant="success" @click="searchRecipes">Search</b-button>    
       </div>
-        <div class="col-sm-2">
+      <div class="col-sm-2"></div>
+      <div class="col-sm-2">
         <b-button type="reset" variant="danger" placeholder="Popularity" @click="onReset">Reset</b-button>
-      </div>
-    </div>
-    <div class="row mb-2">
-      <div class="col-md-2">
-        <h4>Sort by:</h4>
-      </div>
-    </div>
-    <div class="row mb-2">
-      <div class="col-md-2">
-        <b-form-select v-model="sortBy" :options="sortOptions"></b-form-select>
       </div>
     </div>
     <div class="row">
