@@ -9,6 +9,12 @@
     <b-card-text class="recipe-description">
       {{ recipe.description }}
     </b-card-text>
+    <div class="icons">
+      <i v-if="recipe.gluten" class="fas fa-bread-slice" title="Contains Gluten"></i>
+      <i v-if="recipe.glutenFree" class="fas fa-ban" title="Gluten Free"></i>
+      <i v-if="recipe.vegetarian" class="fas fa-carrot" title="Vegetarian"></i>
+      <i v-if="recipe.vegan" class="fas fa-seedling" title="Vegan"></i>
+    </div>
     <ul class="recipe-overview">
       <li>{{ recipe.readyInMinutes }} minutes</li>
       <li>{{ recipe.aggregateLikes }} likes</li>
@@ -20,7 +26,7 @@
         :variant="recipe.liked ? 'danger' : 'outline-danger'" 
         class="like-button"
       >
-        <i class="fas fa-heart"></i>
+        {{ recipe.liked ? 'Liked' : 'Like' }}
       </b-button>
       <router-link :to="{ name: 'recipe', params: { recipeId: recipe.id } }">
         <b-button variant="primary">Open Recipe</b-button>
@@ -48,13 +54,14 @@ export default {
 
 <style scoped>
 .recipe-card {
-  width: 15rem;
-  height: 25rem;
+  width: 14rem; 
+  height: auto; 
   border-radius: 20px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  position: relative;
 }
 
 .recipe-card img {
@@ -65,8 +72,9 @@ export default {
 }
 
 .recipe-description {
-  font-size: 0.3rem;
-  height: 0;
+  font-size: 0.8rem; 
+  height: 80px;
+  margin: 10px 0; 
   flex: 1;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -75,24 +83,43 @@ export default {
   -webkit-box-orient: vertical;
 }
 
+.icons {
+  display: flex;
+  justify-content: left;
+  gap: 10px;
+  margin: 3px;
+}
+
+.icons i {
+  font-size: 1.2rem;
+  margin: 0 5px;
+}
+
 .recipe-overview {
   list-style-type: none;
   padding: 0;
-  margin: 0;
+  margin: 3px 0; 
   display: flex;
   justify-content: space-between;
-  font-size: 0.9rem;
+  font-size: 0.8rem; 
 }
 
 .recipe-overview li {
-  margin-bottom: 10px;
+  margin-top: 20px;
+  margin-bottom: 5px;
 }
 
 .buttons {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 5px;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.button:hover{
+  background: #265df2;
+
 }
 
 .like-button {
@@ -102,4 +129,12 @@ export default {
 .buttons .b-button {
   flex: 1;
 }
+
+.recipe-card .card-title {
+  font-size: 1.2rem;
+  max-height: 3rem; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  }
 </style>
