@@ -32,6 +32,11 @@
         <b-button variant="primary">Open Recipe</b-button>
       </router-link>
     </div>
+
+    <b-modal :id="'like-modal-' + recipe.id" title="Added to Favorites" hide-footer>
+      <p class="my-4">The recipe has been added to your favorites!</p>
+    </b-modal>
+
   </b-card>
 </template>
 
@@ -47,6 +52,7 @@ export default {
     likeRecipe() {
       this.recipe.aggregateLikes += 1;
       this.recipe.liked = true;
+      this.$bvModal.show('like-modal-' + this.recipe.id);
     }
   }
 };
