@@ -65,9 +65,9 @@ export default {
       query:{ searchQuery: '',
       cuisine: null,
       diet: null,
-      intolerance: null,
-      sortBy: { value: 'popularity', text: 'Popularity' }
+      intolerance: null
     },
+      sortBy: { value: 'popularity', text: 'Popularity' },
       sortOptions: [
         { value: 'popularity', text: 'Popularity' },
         { value: 'likes', text: 'Likes' }
@@ -105,8 +105,8 @@ export default {
         //   this.$root.store.server_domain + "/recipes/random",
         // );
 
-        const amountToFetch = 5; // Set this to how many recipes you want to fetch
-        const response = mockSearchRecipes(amountToFetch,this.searchQuery,this.cuisine,this.diet,this.intolerance);
+        const amountToFetch = 3; // Set this to how many recipes you want to fetch
+        const response = mockSearchRecipes(amountToFetch,this.query);
         console.log(response);
         const recipes = response.data.recipes;
         console.log(recipes);
