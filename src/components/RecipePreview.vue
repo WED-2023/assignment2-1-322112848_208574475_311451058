@@ -7,7 +7,7 @@
     class="recipe-card mb-2"
   >
     <b-card-text class="recipe-description">
-      {{ recipe.description }}
+      {{ recipe.summary }}
     </b-card-text>
     <div class="icons">
       <i v-if="recipe.gluten" class="fas fa-bread-slice" title="Contains Gluten"></i>

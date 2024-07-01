@@ -7,7 +7,7 @@
         <input type="text" id="title" v-model="recipe.title" required class="form-control" />
       </div>
       <div class="form-group">
-        <label for="description">Description</label>
+        <label for="description">Summary</label>
         <textarea id="description" v-model="recipe.description" required class="form-control"></textarea>
       </div>
       <div class="form-group">
@@ -55,7 +55,7 @@
         </b-form-group>
       </div>
 
-      <!-- Radio buttons for dietary options -->
+  
       <div class="form-group">
         <label>Dietary Options</label>
         <div>
@@ -88,7 +88,7 @@ export default {
         images: [],
         Likes: 0,
         ingredients: [],
-        gluten: 'true', // Default to 'Contains Gluten'
+        gluten: 'true', 
         vegetarian: false,
         vegan: false,
       },
@@ -143,7 +143,7 @@ export default {
 
     submitRecipe() {
       this.recipe.id = Date.now(); // Generate a unique ID for the recipe
-      this.addRecipe(this.recipe); // Emit event to parent
+      this.addRecipe(this.recipe); 
 
       // Reset the form
       this.recipe = {
@@ -153,7 +153,7 @@ export default {
         images: [],
         Likes: 0,
         ingredients: [],
-        gluten: 'true', // Default to 'Contains Gluten'
+        gluten: 'true', 
         vegetarian: false,
         vegan: false,
       };
@@ -183,6 +183,7 @@ export default {
 
 .image-thumbnail button {
   position: absolute;
+  
   top: 0;
   right: 0;
   background-color: red;
