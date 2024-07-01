@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container mt-5 border rounded shadow-sm p-4">
     <LoginBox title="Please sign in"></LoginBox>
   </div>
 </template>

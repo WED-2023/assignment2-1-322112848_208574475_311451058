@@ -1,12 +1,70 @@
+[
 {
     "id": 716429,
     "image": "https://img.spoonacular.com/recipes/716429-556x370.jpg",
     "title": "Pasta with Garlic, Scallions, Cauliflower & Breadcrumbs",
     "readyInMinutes": 45,
     "aggregateLikes": 209,
-    "vegetarian": false,
+    "vegetarian": true,
     "vegan": false,
     "glutenFree": false,
+    "gluten":true,
     "summary": "You can never have too many main course recipes, so give Pasta with Garlic, Scallions, Cauliflower & Breadcrumbs a try. One serving contains <b>543 calories</b>, <b>17g of protein</b>, and <b>16g of fat</b>. For <b>$1.57 per serving</b>, this recipe <b>covers 22%</b> of your daily requirements of vitamins and minerals. This recipe serves 2. A mixture of butter, white wine, pasta, and a handful of other ingredients are all it takes to make this recipe so yummy. 209 people have tried and liked this recipe. It is brought to you by fullbellysisters.blogspot.com. From preparation to the plate, this recipe takes approximately <b>45 minutes</b>. Taking all factors into account, this recipe <b>earns a spoonacular score of 83%</b>, which is tremendous. If you like this recipe, take a look at these similar recipes: <a href=\"https://spoonacular.com/recipes/pasta-with-garlic-scallions-cauliflower-breadcrumbs-1230187\">Pasta with Garlic, Scallions, Cauliflower & Breadcrumbs</a>, <a href=\"https://spoonacular.com/recipes/pasta-with-garlic-scallions-cauliflower-breadcrumbs-1229807\">Pasta with Garlic, Scallions, Cauliflower & Breadcrumbs</a>, and <a href=\"https://spoonacular.com/recipes/pasta-with-garlic-scallions-cauliflower-breadcrumbs-1229669\">Pasta with Garlic, Scallions, Cauliflower & Breadcrumbs</a>."
 
+},
+{
+    "id": 642083,
+    "image": "https://hips.hearstapps.com/hmg-prod/images/mediterranean-chickpea-salad-lead-667ad3a50b867.jpg?crop=1xw:1xh;center,top&resize=980:*",
+    "title": "Mediterranean Chickpea Salad",
+    "readyInMinutes": 20,
+    "aggregateLikes": 180,
+    "vegetarian": true,
+    "vegan": true,
+    "glutenFree": true,
+    "summary": "Mediterranean Chickpea Salad is a healthy and vibrant dish packed with fresh vegetables and herbs. Perfect for a light lunch or side dish, it’s full of flavor and easy to make. One serving contains <b>220 calories</b>, <b>8g of protein</b>, and <b>10g of fat</b>. For <b>$1.50 per serving</b>, this recipe <b>covers 25%</b> of your daily requirements of vitamins and minerals. This recipe serves 4. It is brought to you by spoonacular.com. From preparation to the plate, this recipe takes approximately <b>20 minutes</b>. Taking all factors into account, this recipe <b>earns a spoonacular score of 90%</b>, which is outstanding. If you like this recipe, take a look at these similar recipes: <a href=\"https://spoonacular.com/recipes/mediterranean-chickpea-salad-1234567\">Mediterranean Chickpea Salad</a>, <a href=\"https://spoonacular.com/recipes/mediterranean-chickpea-salad-1234568\">Mediterranean Chickpea Salad</a>, and <a href=\"https://spoonacular.com/recipes/mediterranean-chickpea-salad-1234569\">Mediterranean Chickpea Salad</a>."
+},
+{
+    "id": 716276,
+    "image": "https://www.shelovesbiscotti.com/wp-content/uploads/2018/09/Roasted-Vegetable-Pasta-2.jpg",
+    "title": "Roasted Vegetable Pasta",
+    "readyInMinutes": 40,
+    "aggregateLikes": 180,
+    "vegetarian": true,
+    "vegan": true,
+    "glutenFree": false,
+    "summary": "Roasted Vegetable Pasta is a hearty and healthy dish packed with colorful veggies. This vegan recipe is perfect for a nutritious and satisfying meal. One serving contains <b>400 calories</b>, <b>10g of protein</b>, and <b>15g of fat</b>. For <b>$1.75 per serving</b>, this recipe <b>covers 25%</b> of your daily requirements of vitamins and minerals. This recipe serves 2. It is brought to you by spoonacular.com. From preparation to the plate, this recipe takes approximately <b>40 minutes</b>. Taking all factors into account, this recipe <b>earns a spoonacular score of 88%</b>, which is tremendous. If you like this recipe, take a look at these similar recipes: <a href=\"https://spoonacular.com/recipes/roasted-vegetable-pasta-1234567\">Roasted Vegetable Pasta</a>, <a href=\"https://spoonacular.com/recipes/roasted-vegetable-pasta-1234568\">Roasted Vegetable Pasta</a>, and <a href=\"https://spoonacular.com/recipes/roasted-vegetable-pasta-1234569\">Roasted Vegetable Pasta</a>."
+},
+{
+    "id": 715421,
+    "image": "https://www.kitchensanctuary.com/wp-content/uploads/2021/10/Creamy-Mushroom-Pasta-tall-1-51-1.webp",
+    "title": "Creamy Mushroom Pasta",
+    "readyInMinutes": 35,
+    "aggregateLikes": 195,
+    "vegetarian": true,
+    "vegan": false,
+    "glutenFree": false,
+    "summary": "Creamy Mushroom Pasta is a rich and savory dish perfect for mushroom lovers. This vegetarian recipe combines mushrooms with a creamy sauce for a comforting meal. One serving contains <b>530 calories</b>, <b>15g of protein</b>, and <b>20g of fat</b>. For <b>$2.00 per serving</b>, this recipe <b>covers 22%</b> of your daily requirements of vitamins and minerals. This recipe serves 2. It is brought to you by spoonacular.com. From preparation to the plate, this recipe takes approximately <b>35 minutes</b>. Taking all factors into account, this recipe <b>earns a spoonacular score of 86%</b>, which is excellent. If you like this recipe, take a look at these similar recipes: <a href=\"https://spoonacular.com/recipes/creamy-mushroom-pasta-1234567\">Creamy Mushroom Pasta</a>, <a href=\"https://spoonacular.com/recipes/creamy-mushroom-pasta-1234568\">Creamy Mushroom Pasta</a>, and <a href=\"https://spoonacular.com/recipes/creamy-mushroom-pasta-1234569\">Creamy Mushroom Pasta</a>."
+},
+{
+    "id": 633974,
+    "image": "https://img.taste.com.au/CNbRWpJI/w720-h480-cfill-q80/taste/2016/11/lemon-herb-barbecued-chicken-83153-1.jpeg",
+    "title": "Grilled Lemon Herb Chicken",
+    "readyInMinutes": 60,
+    "aggregateLikes": 210,
+    "vegetarian": false,
+    "vegan": false,
+    "glutenFree": true,
+    "summary": "Grilled Lemon Herb Chicken is a simple yet flavorful dish perfect for any meal. Marinated in lemon juice and fresh herbs, this chicken is juicy and delicious. One serving contains <b>320 calories</b>, <b>35g of protein</b>, and <b>15g of fat</b>. For <b>$2.50 per serving</b>, this recipe <b>covers 30%</b> of your daily requirements of vitamins and minerals. This recipe serves 4. It is brought to you by spoonacular.com. From preparation to the plate, this recipe takes approximately <b>60 minutes</b>. Taking all factors into account, this recipe <b>earns a spoonacular score of 89%</b>, which is excellent. If you like this recipe, take a look at these similar recipes: <a href=\"https://spoonacular.com/recipes/grilled-lemon-herb-chicken-1234567\">Grilled Lemon Herb Chicken</a>, <a href=\"https://spoonacular.com/recipes/grilled-lemon-herb-chicken-1234568\">Grilled Lemon Herb Chicken</a>, and <a href=\"https://spoonacular.com/recipes/grilled-lemon-herb-chicken-1234569\">Grilled Lemon Herb Chicken</a>."
+},
+{
+    "id": 715573,
+    "image": "https://veganheaven.org/wp-content/uploads/2017/11/Quinoa-Stuffed-Bell-Peppers-in-the-Slow-Cooker-1.jpg",
+    "title": "Quinoa Stuffed Peppers",
+    "readyInMinutes": 45,
+    "aggregateLikes": 200,
+    "vegetarian": true,
+    "vegan": true,
+    "glutenFree": true,
+    "summary": "Quinoa Stuffed Peppers are a nutritious and satisfying dish that is perfect for a main course or side. Packed with quinoa, vegetables, and spices, these peppers are both healthy and delicious. One serving contains <b>290 calories</b>, <b>10g of protein</b>, and <b>8g of fat</b>. For <b>$2.00 per serving</b>, this recipe <b>covers 28%</b> of your daily requirements of vitamins and minerals. This recipe serves 4. It is brought to you by spoonacular.com. From preparation to the plate, this recipe takes approximately <b>45 minutes</b>. Taking all factors into account, this recipe <b>earns a spoonacular score of 88%</b>, which is tremendous. If you like this recipe, take a look at these similar recipes: <a href=\"https://spoonacular.com/recipes/quinoa-stuffed-peppers-1234567\">Quinoa Stuffed Peppers</a>, <a href=\"https://spoonacular.com/recipes/quinoa-stuffed-peppers-1234568\">Quinoa Stuffed Peppers</a>, and <a href=\"https://spoonacular.com/recipes/quinoa-stuffed-peppers-1234569\">Quinoa Stuffed Peppers</a>."
 }
+]

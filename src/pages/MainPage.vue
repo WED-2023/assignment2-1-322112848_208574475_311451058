@@ -102,11 +102,5 @@ export default {
       padding: 0.75rem 1.5rem;
       font-size: 1.25rem;
     }
-    .wrapper {
-      display: flex;
-      flex-direction: column;
-      margin: 5%;
-      background-color: #f5fff9;
-    }
       
 </style>

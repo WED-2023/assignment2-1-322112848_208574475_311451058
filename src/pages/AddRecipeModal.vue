@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container mt-5 border rounded shadow-sm p-4">
     <h1 class="title">Add Recipe</h1>
     <form @submit.prevent="submitRecipe">
       <div class="form-group">
@@ -7,11 +7,11 @@
         <input type="text" id="title" v-model="recipe.title" required class="form-control" />
       </div>
       <div class="form-group">
-        <label for="description">Description</label>
+        <label for="description">Summary</label>
         <textarea id="description" v-model="recipe.description" required class="form-control"></textarea>
       </div>
       <div class="form-group">
-        <label for="time">Overall Time (In minuets)</label>
+        <label for="time">Overall Time (In minutes)</label>
         <b-form-spinbutton id="sb-wrap" v-model="recipe.time" wrap min="0" max="999" placeholder="--"></b-form-spinbutton>
       </div>
 
@@ -54,6 +54,18 @@
           </template>
         </b-form-group>
       </div>
+
+  
+      <div class="form-group">
+        <label>Dietary Options</label>
+        <div>
+          <b-form-radio v-model="recipe.gluten" name="gluten" value="true">Contains Gluten</b-form-radio>
+          <b-form-radio v-model="recipe.gluten" name="gluten" value="false">Gluten Free</b-form-radio>
+          <b-form-checkbox v-model="recipe.vegetarian">Vegetarian</b-form-checkbox>
+          <b-form-checkbox v-model="recipe.vegan">Vegan</b-form-checkbox>
+        </div>
+      </div>
+
       <button type="submit" class="btn btn-success">Add Recipe</button>
     </form>
   </div>
@@ -62,18 +74,10 @@
 <script>
 export default {
   props: {
-    // recipes:{
-    //   type: Array,
-    //   required: true
-    // },
     addRecipe: {
       type: Function,
       required: true
     }
-    // currentMaxId: {
-    //   type: Number,
-    //   required: true
-    // }
   },
   data() {
     return {
@@ -83,7 +87,10 @@ export default {
         time: '',
         images: [],
         Likes: 0,
-        ingredients: []
+        ingredients: [],
+        gluten: 'true', 
+        vegetarian: false,
+        vegan: false,
       },
       files: null,
       showImage: false,
@@ -93,25 +100,20 @@ export default {
   },
   computed: {
     state() {
-      // Overall component validation state
       return this.IsValid ? (this.recipe.ingredients.length > 2 && this.recipe.ingredients.length < 16) : null;
     }
   },
   watch: {
     'recipe.ingredients'(newValue, oldValue) {
-      // Set the flag on first change to the ingredients array
       this.IsValid = true;
     }
   },
   methods: {
     tagValidator(tag) {
-      // Individual ingredient validator function
       return tag === tag.toLowerCase() && tag.length > 2 && tag.length < 15;
     },
     handleTagInput(tags) {
-      // Convert all tags to lowercase
       this.recipe.ingredients = tags.map(tag => tag.toLowerCase());
-      // Validate tags
       this.IsValid = this.recipe.ingredients.every(tag => this.tagValidator(tag));
     },
 
@@ -140,11 +142,8 @@ export default {
     },
 
     submitRecipe() {
-      // this.recipe.id = this.currentMaxId + 1;
-      // this.addRecipe(this.recipe);
-      
       this.recipe.id = Date.now(); // Generate a unique ID for the recipe
-      this.addRecipe(this.recipe); // Emit event to parent
+      this.addRecipe(this.recipe); 
 
       // Reset the form
       this.recipe = {
@@ -153,7 +152,10 @@ export default {
         time: '',
         images: [],
         Likes: 0,
-        ingredients: []
+        ingredients: [],
+        gluten: 'true', 
+        vegetarian: false,
+        vegan: false,
       };
       this.files = null;
       this.IsValid = false;
@@ -181,6 +183,7 @@ export default {
 
 .image-thumbnail button {
   position: absolute;
+  
   top: 0;
   right: 0;
   background-color: red;

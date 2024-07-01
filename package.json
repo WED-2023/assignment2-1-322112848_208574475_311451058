@@ -6,11 +6,13 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.5.2",
     "axios": "^0.19.2",
     "bootstrap": "^4.5.0",
     "bootstrap-vue": "^2.15.0",
     "core-js": "^3.6.5",
     "cors": "^2.8.5",
+    "package.json": "^2.0.1",
     "sass": "^1.50.0",
     "vue": "^2.6.11",
     "vue-axios": "^2.1.5",

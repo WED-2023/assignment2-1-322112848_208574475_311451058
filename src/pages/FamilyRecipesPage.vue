@@ -1,81 +1,65 @@
 <template>
-  <div>
+  <div class="container mt-5 border rounded shadow-sm p-4">
     <h1>Family Recipes</h1>
     <div class="recipe-list">
-      <b-card
+      <RecipePreview
         v-for="recipe in recipes"
         :key="recipe.id"
-        :title="recipe.title"
-        :img-src="recipe.images[0]" 
-        img-alt="Recipe Image"
-        img-top
-        class="recipe-card mb-3"
-      >
-        <b-card-text class="recipe-description">
-          {{ recipe.description }}
-        </b-card-text>
-        <ul class="recipe-overview">
-          <li>{{ recipe.time }} minutes</li>
-          <li>{{ recipe.aggregateLikes }} likes</li>
-        </ul>
-        <div class="buttons">
-          <b-button @click.stop="likeRecipe(recipe)" variant="outline-danger" class="like-button">
-            <i class="fas fa-heart"></i>
-          </b-button>
-          <router-link :to="{ name: 'recipe', params: { recipeId: recipe.id } }">
-            <b-button variant="primary">Open Recipe</b-button>
-          </router-link>
-        </div>
-        <!-- Details -->
-        <div class="recipe-details">
-          <h2>{{ recipe.title }}</h2>
-          <p><strong>Description:</strong> {{ recipe.description }}</p>
-          <p><strong>Time:</strong> {{ recipe.time }} minutes</p>
-          <p><strong>Ingredients:</strong></p>
-          <ul>
-            <li v-for="(ingredient, index) in recipe.ingredients" :key="index">{{ ingredient }}</li>
-          </ul>
-          <p><strong>Images:</strong></p>
-          <div class="recipe-images">
-            <img v-for="(image, index) in recipe.images" :key="index" :src="image" alt="Recipe Image" class="recipe-image" />
-          </div>
-        </div>
-      </b-card>
+        :recipe="recipe"
+        @like-recipe="likeRecipe"
+      />
     </div>
   </div>
 </template>
 
 <script>
+import RecipePreview from '../components/RecipePreview.vue';
+
 export default {
+  components: {
+    RecipePreview
+  },
   data() {
     return {
       recipes: [
         {
           id: 1,
           title: 'Cheesecake',
-          description: 'A delicious creamy cheesecake with a graham cracker crust.',
-          time: 90,
-          images: ["https://www.cookingclassy.com/wp-content/uploads/2023/02/honey-mustard-chicken-01-1024x1536.jpg"],
+          summary: 'A delicious creamy cheesecake with a graham cracker crust.',
+          readyInMinutes: 90,
+          image: "https://d3o5sihylz93ps.cloudfront.net/wp-content/uploads/sites/2/2019/05/15110539/Copy-of-%D7%A2%D7%95%D7%92%D7%AA-%D7%92%D7%91%D7%99%D7%A0%D7%94-%D7%A4%D7%99%D7%A8%D7%95%D7%A8%D7%99%D7%9D-%D7%9E%D7%A2%D7%9C%D7%A4%D7%AA.jpg",
           aggregateLikes: 0,
-          ingredients: ['cream cheese', 'sugar', 'eggs', 'petibar']
+          liked: false,
+          gluten: true,
+          glutenFree: false,
+          vegetarian: false,
+          vegan: false
         },
         {
           id: 2,
           title: 'Chicken in Honey and Mustard',
-          description: 'Juicy chicken breasts cooked in a sweet and tangy honey mustard sauce.',
-          time: 30,
-          images: ["assets/Images/chicken_honey_and_mustard.jpg"],
+          summary: 'Juicy chicken breasts cooked in a sweet and tangy honey mustard sauce.',
+          readyInMinutes: 30,
+          image: "https://www.cookingclassy.com/wp-content/uploads/2023/02/honey-mustard-chicken-01-1024x1536.jpg",
           aggregateLikes: 0,
-          ingredients: ['chicken breasts', 'honey', 'mustard', 'olive oil', 'garlic']
+          liked: false,
+          gluten: true,
+          glutenFree: false,
+          vegetarian: false,
+          vegan: false
         },
         {
           id: 3,
           title: 'Salmon in Pesto Sauce',
-          description: 'Tender salmon fillets topped with a flavorful pesto sauce.',
-          time: 25,
-          images: ["salmon_in_pesto.jpg"],
+          summary: 'Tender salmon fillets topped with a flavorful pesto sauce.',
+          readyInMinutes: 25,
+          image: "https://www.garlicandzest.com/wp-content/uploads/2021/03/pesto-baked-salmon-16.jpg",
           aggregateLikes: 0,
-          ingredients: ['salmon fillets', 'pesto sauce', 'lemon', 'olive oil']
+          liked: false,
+          gluten: false,
+          glutenFree: true,
+          vegetarian: false,
+          vegan: false
         }
       ]
     };
@@ -83,100 +67,161 @@ export default {
   methods: {
     likeRecipe(recipe) {
       recipe.aggregateLikes += 1;
-      // You can add further logic here, such as sending the like to a server
+      recipe.liked = true;
     }
   }
 };
 </script>
 
 <style scoped>
+.family-recipes {
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+
+h1 {
+  text-align: left;
+  margin-bottom: 20px;
+  font-size: 3rem;
+  color: #333;
+}
+
 .recipe-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 30px; 
-}
-
-.recipe-card {
-  border-radius: 20px;
-  overflow: hidden;
-}
-
-.recipe-card img {
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
-  object-fit: cover;
-  height: 9rem; 
-}
-
-.recipe-description {
-  font-size: 0.9rem; 
-  height: 0;
-  flex: 1;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 3; 
-  -webkit-box-orient: vertical;
-}
-
-.recipe-overview {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.9rem;
-}
-
-.recipe-overview li {
-  margin-bottom: 5px;
-}
-
-.buttons {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 5px;
-}
-
-.like-button {
-  margin-right: 5px;
-}
-
-.buttons .b-button {
-  flex: 1;
-}
-
-.recipe-details {
-  margin-top: 10px;
-  padding: 10px;
-  background-color: #f0f0f0; 
-  border-radius: 10px;
-}
-
-.recipe-details h2 {
-  font-size: 1.2rem; 
-  margin-top: 0;
-}
-
-.recipe-details p {
-  margin: 5px 0;
-}
-
-.recipe-details ul {
-  margin: 5px 0;
-  padding-left: 20px;
-}
-
-.recipe-details .recipe-images {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.recipe-details .recipe-images img {
-  max-width: 100px; 
-  max-height: 100px; 
-  object-fit: cover;
+  gap: 40px;
 }
 </style>
+
+
+
+
+<!--<template>
+    
+    <div class="card-warpper">
+        <h1>Family</h1>
+        <div class="card">
+            <div class="image-content">
+                <span class="overlay"></span>
+
+                <div class="card-image">
+                    <img src="src\assets\Images\cheesecake.jpg" alt="" class="card-img">
+                </div>
+
+                <div class="card-content">
+                    <h2 class="Title"> Cheesecake</h2>
+                    <p class="discription">A delicious creamy cheesecake with a graham cracker crust</p>
+
+                    <b-button 
+                        @click.stop="likeRecipe" 
+                        :disabled="recipe.liked" 
+                        :variant="recipe.liked ? 'danger' : 'outline-danger'" 
+                        class="like-button"
+                    >
+                        {{ recipe.liked ? 'Liked' : 'Like' }}
+                    </b-button>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+export default {
+  props: {
+    recipe: {
+      type: Object,
+      required: true
+    }
+  },
+  methods: {
+    likeRecipe() {
+      this.recipe.aggregateLikes += 1;
+      this.recipe.liked = true;
+    }
+  }
+};
+</script>
+
+<style scoped>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Times New Roman', Times, serif;
+    }
+    
+    .card-warpper{
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 3px;
+    }
+
+
+    .card{
+        width: 320px;
+        border-radius: 25px;
+        background-color: #fff;
+    }
+
+    .image-content,
+    .card-content{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 10px 14px;
+    }
+
+    .image-content{
+        position: relative;
+        row-gap: 5px;
+    }
+
+    .overlay{
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        background: color #4070f4;
+        border-radius: 25px 25px 0 25px; 
+    }
+    .card-image{
+        position: relative;
+        height: 150px;
+        width: 150px;
+        
+
+    }
+
+    .card-image.card-img{
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
+
+    .discription{
+        font-size: 14px;
+        text-align: center;
+    }
+
+    .like-button{
+        border: none;
+        font-size: 16px;
+        color: #fff;
+        padding: 8px 16px;
+        background-color: #4070F4;
+        border-radius: 6px;
+        margin: 14px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .like-button:hover{
+        background: #265df2;
+    }
+</style>-->
