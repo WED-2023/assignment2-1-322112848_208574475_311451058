@@ -9,13 +9,24 @@
     <b-card-text class="recipe-description">
       {{ recipe.description }}
     </b-card-text>
+    <div class="icons">
+      <i v-if="recipe.gluten" class="fas fa-bread-slice" title="Contains Gluten"></i>
+      <i v-if="recipe.glutenFree" class="fas fa-ban" title="Gluten Free"></i>
+      <i v-if="recipe.vegetarian" class="fas fa-carrot" title="Vegetarian"></i>
+      <i v-if="recipe.vegan" class="fas fa-seedling" title="Vegan"></i>
+    </div>
     <ul class="recipe-overview">
       <li>{{ recipe.readyInMinutes }} minutes</li>
       <li>{{ recipe.aggregateLikes }} likes</li>
     </ul>
     <div class="buttons">
-      <b-button @click.stop="likeRecipe(recipe)" variant="outline-danger" class="like-button">
-        <i class="fas fa-heart"></i>
+      <b-button 
+        @click.stop="likeRecipe" 
+        :disabled="recipe.liked" 
+        :variant="recipe.liked ? 'danger' : 'outline-danger'" 
+        class="like-button"
+      >
+        {{ recipe.liked ? 'Liked' : 'Like' }}
       </b-button>
       <router-link :to="{ name: 'recipe', params: { recipeId: recipe.id } }">
         <b-button variant="primary">Open Recipe</b-button>
@@ -26,67 +37,31 @@
 
 <script>
 export default {
-  // mounted() {
-  //   this.axios.get(this.recipe.image).then((i) => {
-  //     this.image_load = true;
-  //   });
-  // },
-  // data() {
-  //   return {
-  //     image_load: true
-  //   };
-  // },
   props: {
     recipe: {
       type: Object,
       required: true
-    },
-
-    methods: {
-    likeRecipe(recipe) {
-      recipe.aggregateLikes += 1;
     }
   },
-
-    // id: {
-    //   type: Number,
-    //   required: true
-    // },
-
-    // title: {
-    //   type: String,
-    //   required: true
-    // },
-    // readyInMinutes: {
-    //   type: Number,
-    //   required: true
-    // },
-
-
-    // image: {
-    //   type: String,
-    //   required: true
-    // },
-    // aggregateLikes: {
-    //   type: Number,
-    //   required: false,
-    //   default() {
-    //     return undefined;
-    //   }
-    // }
+  methods: {
+    likeRecipe() {
+      this.recipe.aggregateLikes += 1;
+      this.recipe.liked = true;
+    }
   }
 };
 </script>
 
 <style scoped>
 .recipe-card {
-  width: 15rem;
-  height: 25rem;
+  width: 14rem; 
+  height: auto; 
   border-radius: 20px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  position: relative;
 }
 
 .recipe-card img {
@@ -97,8 +72,9 @@ export default {
 }
 
 .recipe-description {
-  font-size: 0.3rem;
-  height: 0;
+  font-size: 0.8rem; 
+  height: 80px;
+  margin: 10px 0; 
   flex: 1;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -107,24 +83,43 @@ export default {
   -webkit-box-orient: vertical;
 }
 
+.icons {
+  display: flex;
+  justify-content: left;
+  gap: 10px;
+  margin: 3px;
+}
+
+.icons i {
+  font-size: 1.2rem;
+  margin: 0 5px;
+}
+
 .recipe-overview {
   list-style-type: none;
   padding: 0;
-  margin: 0;
+  margin: 3px 0; 
   display: flex;
   justify-content: space-between;
-  font-size: 0.9rem;
+  font-size: 0.8rem; 
 }
 
 .recipe-overview li {
-  margin-bottom: 10px;
+  margin-top: 20px;
+  margin-bottom: 5px;
 }
 
 .buttons {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 5px;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.button:hover{
+  background: #265df2;
+
 }
 
 .like-button {
@@ -135,4 +130,11 @@ export default {
   flex: 1;
 }
 
+.recipe-card .card-title {
+  font-size: 1.2rem;
+  max-height: 3rem; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  }
 </style>
