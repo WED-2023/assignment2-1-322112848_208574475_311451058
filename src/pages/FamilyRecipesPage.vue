@@ -25,7 +25,7 @@ export default {
         {
           id: 1,
           title: 'Cheesecake',
-          description: 'A delicious creamy cheesecake with a graham cracker crust.',
+          summary: 'A delicious creamy cheesecake with a graham cracker crust.',
           readyInMinutes: 90,
           image: "https://d3o5sihylz93ps.cloudfront.net/wp-content/uploads/sites/2/2019/05/15110539/Copy-of-%D7%A2%D7%95%D7%92%D7%AA-%D7%92%D7%91%D7%99%D7%A0%D7%94-%D7%A4%D7%99%D7%A8%D7%95%D7%A8%D7%99%D7%9D-%D7%9E%D7%A2%D7%9C%D7%A4%D7%AA.jpg",
           aggregateLikes: 0,
@@ -38,7 +38,7 @@ export default {
         {
           id: 2,
           title: 'Chicken in Honey and Mustard',
-          description: 'Juicy chicken breasts cooked in a sweet and tangy honey mustard sauce.',
+          summary: 'Juicy chicken breasts cooked in a sweet and tangy honey mustard sauce.',
           readyInMinutes: 30,
           image: "https://www.cookingclassy.com/wp-content/uploads/2023/02/honey-mustard-chicken-01-1024x1536.jpg",
           aggregateLikes: 0,
@@ -51,7 +51,7 @@ export default {
         {
           id: 3,
           title: 'Salmon in Pesto Sauce',
-          description: 'Tender salmon fillets topped with a flavorful pesto sauce.',
+          summary: 'Tender salmon fillets topped with a flavorful pesto sauce.',
           readyInMinutes: 25,
           image: "https://www.garlicandzest.com/wp-content/uploads/2021/03/pesto-baked-salmon-16.jpg",
           aggregateLikes: 0,
@@ -80,7 +80,7 @@ export default {
 }
 
 h1 {
-  text-align: center;
+  text-align: left;
   margin-bottom: 20px;
   font-size: 3rem;
   color: #333;
