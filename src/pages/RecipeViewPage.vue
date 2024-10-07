@@ -46,25 +46,26 @@ import { mockGetRecipeFullDetails } from "../services/recipes.js";
 export default {
   data() {
     return {
-      recipe: null
+      recipe: null,
+      recipeId: ['id']
     };
   },
   async created() {
     try {
       let response;
-      // response = this.$route.params.response;
+      response = this.$route.params.response;
 
       try {
-        // response = await this.axios.get(
-        //   this.$root.store.server_domain + "/recipes/" + this.$route.params.recipeId,
-        //   {
-        //     withCredentials: true
-        //   }
-        // );
+        response = await this.axios.get(
+          this.$root.store.server_domain + "/recipes/" + this.$route.params.recipeId,
+          {
+            withCredentials: true
+          }
+        );
 
         response = mockGetRecipeFullDetails(this.$route.params.recipeId);
 
-        // console.log("response.status", response.status);
+        console.log("response.status", response.status);
         if (response.status !== 200) this.$router.replace("/NotFound");
       } catch (error) {
         console.log("error.response.status", error.response.status);
@@ -121,7 +122,4 @@ export default {
   margin-right: auto;
   width: 50%;
 }
-/* .recipe-header{
-
-} */
 </style>

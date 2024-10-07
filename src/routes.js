@@ -23,27 +23,27 @@ const routes = [
     component: () => import("./pages/SearchPage"),
   },
   {
-    path: "   ",
+    path: "/recipes/:recipe_id/preview",
     name: "recipe",
     component: () => import("./pages/RecipeViewPage"),
   },
   {
-    path: "   ",
+    path: "/recipes/:user_id/myRecipes",
     name: "NewRecipe",
     component: () => import("./pages/AddRecipeModal"),
   },
   {
-    path: "   ",
+    path: "/recipes/:user_id/myRecipes",
     name: "My Recipes",
     component: () => import("./pages/MyRecipePage"),
   },
   {
-    path: "   ",
+    path: "recipes/family",
     name: "Family Recipes",
     component: () => import("./pages/FamilyRecipesPage"),
   },
   {
-    path: "   ",
+    path: "/recipes/:user_id/favorite",
     name: "Favorite Recipes",
     component: () => import("./pages/FavoritesPage"),
   },
@@ -57,6 +57,12 @@ const routes = [
     name: "about",
     component: () => import("./pages/AboutPage"),
   },
+  {
+    path: "/recipe/:recipe_id",
+    name: "recipe",
+    component: () => import("./pages/RecipeViewPage"),
+    props: true, // Pass route params as props to the component
+  }
 ];
 
 export default routes;
