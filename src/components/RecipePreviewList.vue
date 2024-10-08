@@ -14,7 +14,7 @@
 
 <script>
 import RecipePreview from "./RecipePreview.vue";
-import { mockGetRecipesPreview } from "../services/recipes.js";
+//import { mockGetRecipesPreview } from "../services/recipes.js";
 export default {
   name: "RecipePreviewList",
   components: {
@@ -37,12 +37,12 @@ export default {
   methods: {
     async updateRecipes() {
       try {
-        // const response = await this.axios.get(
-        //   this.$root.store.server_domain + "/recipes/random",
-        // );
+        const response = await this.axios.get(
+          this.$root.store.server_domain + "/recipes/random",
+        );
 
         const amountToFetch = 3; // Set this to how many recipes you want to fetch
-        const response = mockGetRecipesPreview(amountToFetch);
+        //const response = mockGetRecipesPreview(amountToFetch);
 
 
         console.log(response);

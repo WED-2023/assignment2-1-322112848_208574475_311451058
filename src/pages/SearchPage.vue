@@ -78,11 +78,11 @@ export default {
     };
   },
   mounted() {
-    // console.log("mounted");
+    console.log("mounted");
     this.cuisines.push(...cuisines);
     this.diets.push(...diets);
     this.intolerances.push(...intolerances);
-    // console.log($v);
+    console.log($v);
   },
   computed: {
     sortedRecipes() {
@@ -101,12 +101,12 @@ export default {
   methods: {
     async searchRecipes() {
       try {
-        // const response = await this.axios.get(
-        //   this.$root.store.server_domain + "/recipes/random",
-        // );
+        const response = await this.axios.get(
+          this.$root.store.server_domain + "/recipes/random",
+        );
 
         const amountToFetch = 3; // Set this to how many recipes you want to fetch
-        const response = mockSearchRecipes(amountToFetch,this.query);
+        //const response = mockSearchRecipes(amountToFetch,this.query);
         console.log(response);
         const recipes = response.response.data.recipes;
         console.log(recipes);
