@@ -15,16 +15,18 @@ export function mockGetRecipesPreview(amount = 1) {
 }
 
 export function mockGetRecipeFullDetails(recipeId) {
-    return { data: { recipe: recipe_full_view } } ;
+    return { status: 200, response:  {data: { recipe: recipe_full_view } }} ;
   }
 
-export function mockSearchRecipes(amountToFetch =1,query) {
+export function mockSearchRecipes(amountToFetch =5,query) {
   let recipes = [];
-  for(let i = 0; i < amountToFetch; i++){
-    recipes.push(recipe_preview[i]);
+  for(let i = 0; i < 5; i++){
+    if (recipe_preview[i].title.toLowerCase().includes(query.searchQuery.toLowerCase()) || query.searchQuery =='')
+      recipes.push(recipe_preview[i]);
   }
-
-  return { data: { recipes: recipes } };
+  if (recipes.length==0)
+    return { status: 204,response: { data: { recipes: recipes }} };
+  return { status: 200,response: { data: { recipes: recipes }} };
 }
 
 function getRandomInt(max) {

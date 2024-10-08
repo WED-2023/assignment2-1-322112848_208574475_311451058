@@ -38,18 +38,11 @@
     </div>
     <div class="row">
       <div class="col-md-4" v-for="recipe in sortedRecipes" :key="recipe.id">
-        <b-card :title="recipe.name">
-          <b-card-text>
-            Cuisine: {{ recipe.cuisine }}<br>
-            Diet: {{ recipe.diet }}<br>
-            Intolerances: {{ recipe.intolerances.join(', ') }}
-          </b-card-text>
-          <b-card-text>
-            Popularity: {{ recipe.popularity }}<br>
-            Likes: {{ recipe.likes }}
-          </b-card-text>
-        </b-card>
+        <RecipePreview v-if="searched" class="recipePreview" :recipe="recipe" />
       </div>
+    </div>
+    <div class="row" v-if="searched && recipes.length===0">
+      <h4>Sorry, maybe that recipe is from another planet</h4>
     </div>
   </form>
 </template>
@@ -58,8 +51,13 @@
   import cuisines from "../assets/cuisines";
   import diets from "../assets/diets";
   import intolerances from "../assets/intolerances";
-  import RecipePreviewList from '../components/RecipePreviewList.vue';
+  import RecipePreview from '../components/RecipePreview.vue';
+  import { mockSearchRecipes } from "../services/recipes.js";
 export default {
+  name:"searchPage",
+  components: {
+    RecipePreview
+  },
   data() {
     return {
       query:{ searchQuery: '',
@@ -67,51 +65,56 @@ export default {
       diet: null,
       intolerance: null
     },
-      sortBy: { value: 'popularity', text: 'Popularity' },
+      sortBy: 'popularity',
       sortOptions: [
         { value: 'popularity', text: 'Popularity' },
-        { value: 'likes', text: 'Likes' }
+        { value: 'prep_time', text: 'Preperation time' }
       ],
       cuisines: [{ value: null, text: "Cuisines", disabled: false }],
       diets: [{ value: null, text: "Diets", disabled: false }],
       intolerances: [{ value: null, text: "Intolerances", disabled: false }],
-      recipes: []
+      recipes: [],
+      searched: false
     };
   },
   mounted() {
-    // console.log("mounted");
+    console.log("mounted");
     this.cuisines.push(...cuisines);
     this.diets.push(...diets);
     this.intolerances.push(...intolerances);
-    // console.log($v);
+    console.log($v);
   },
   computed: {
     sortedRecipes() {
       return this.recipes.slice(0).sort((a, b) => {
         if (this.sortBy === 'popularity') {
-          return b.popularity - a.popularity;
-        } else if (this.sortBy === 'likes') {
-          return b.likes - a.likes;
+          return b.aggregateLikes - a.aggregateLikes;
+        } else if (this.sortBy === 'prep_time') {
+          return b.readyInMinutes - a.readyInMinutes;
         } else {
           return 0;
         }
       });
     }
+    
   },
   methods: {
     async searchRecipes() {
       try {
-        // const response = await this.axios.get(
-        //   this.$root.store.server_domain + "/recipes/random",
-        // );
+        const response = await this.axios.get(
+          this.$root.store.server_domain + "/recipes/random",
+        );
 
         const amountToFetch = 3; // Set this to how many recipes you want to fetch
-        const response = mockSearchRecipes(amountToFetch,this.query);
+        //const response = mockSearchRecipes(amountToFetch,this.query);
         console.log(response);
-        const recipes = response.data.recipes;
+        const recipes = response.response.data.recipes;
         console.log(recipes);
         this.recipes = [];
         this.recipes.push(...recipes);
+        if (response.status==204)
+          this.recipes = [];
+        this.searched =true;
       } catch (error) {
         console.log(error);
       }
@@ -125,6 +128,7 @@ export default {
       intolerance: { value: null, text: 'Intolerances' },
       sortBy: 'popularity'
       };
+      this.searched =false;
     }
   }
 };
