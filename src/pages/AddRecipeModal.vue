@@ -16,22 +16,10 @@
       </div>
 
       <div class="form-group">
-        <label for="images">Images</label>
-        <b-form-file
-          v-model="files"
-          multiple
-          :state="Boolean(files)"
-          placeholder="Choose files or drop them here..."
-          drop-placeholder="Drop files here..."
-          @change="handleFileUpload"
-        ></b-form-file>
-        <div class="mt-3">Selected files: {{ files ? files.map(f => f.name).join(', ') : '' }}</div>
-        <div class="image-preview-container">
-          <div v-for="(image, index) in recipe.images" :key="index" class="image-thumbnail">
-            <img :src="image" @click="popImage(image)" />
-            <button type="button" @click="removeImage(index)">Remove</button>
-          </div>
-        </div>
+        <label for="images">Image Link</label>
+        <input type="text" id="title" v-model="recipe.image" @input="validateURL" 
+        :class="{ 'is-invalid': !isURLValid }" class="form-control" />
+        <small v-if="!isURLValid" class="text-danger">Please enter a valid URL.</small>
       </div>
 
       <div class="form-group">
@@ -59,36 +47,29 @@
       <div class="form-group">
         <label>Dietary Options</label>
         <div>
-          <b-form-radio v-model="recipe.gluten" name="gluten" value="true">Contains Gluten</b-form-radio>
-          <b-form-radio v-model="recipe.gluten" name="gluten" value="false">Gluten Free</b-form-radio>
+          <b-form-checkbox v-model="recipe.glutenFree">Gluten Free</b-form-checkbox>
           <b-form-checkbox v-model="recipe.vegetarian">Vegetarian</b-form-checkbox>
           <b-form-checkbox v-model="recipe.vegan">Vegan</b-form-checkbox>
         </div>
       </div>
 
-      <button type="submit" class="btn btn-success">Add Recipe</button>
+      <button type="submit" class="btn btn-success" @click="submitRecipe()">Add Recipe</button>
     </form>
   </div>
 </template>
 
 <script>
 export default {
-  props: {
-    addRecipe: {
-      type: Function,
-      required: true
-    }
-  },
   data() {
     return {
       recipe: {
         title: '',
         description: '',
         time: '',
-        images: [],
+        image: '',
         Likes: 0,
         ingredients: [],
-        gluten: 'true', 
+        glutenFree: false, 
         vegetarian: false,
         vegan: false,
       },
@@ -116,34 +97,20 @@ export default {
       this.recipe.ingredients = tags.map(tag => tag.toLowerCase());
       this.IsValid = this.recipe.ingredients.every(tag => this.tagValidator(tag));
     },
-
-    handleFileUpload(event) {
-      const files = event.target.files || event;
-      for (let i = 0; i < files.length; i++) {
-        this.readFile(files[i]);
-      }
+    validateURL() {
+      // Regular expression to check for a valid URL format
+      const urlPattern = new RegExp('^(https?://)?(www.)?([a-zA-Z0-9]+)\\.[a-z]{2,}(/.*)?$');
+      this.isURLValid = urlPattern.test(this.recipe.image);
     },
-    readFile(file) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        if (!this.recipe.images) {
-          this.recipe.images = [];
-        }
-        this.recipe.images.push(e.target.result);
-      };
-      reader.readAsDataURL(file);
-    },
-    removeImage(index) {
-      this.recipe.images.splice(index, 1);
-    },
-    popImage(image) {
-      this.currentImage = image;
-      this.showImageModal = true;
-    },
-
     submitRecipe() {
-      this.recipe.id = Date.now(); // Generate a unique ID for the recipe
-      this.addRecipe(this.recipe); 
+      this.recipe.id = Math.floor(100000 + Math.random() * 900000); // Generate a unique ID for the recipe
+      this.axios.post(
+          this.$root.store.server_domain + "/users/myRecipes",
+          {
+            recipe : this.recipe,
+            withCredentials: true
+          }
+        );
 
       // Reset the form
       this.recipe = {
@@ -153,7 +120,7 @@ export default {
         images: [],
         Likes: 0,
         ingredients: [],
-        gluten: 'true', 
+        glutenFree: false, 
         vegetarian: false,
         vegan: false,
       };

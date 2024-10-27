@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container mt-5 border rounded shadow-sm p-4">
     <div v-if="recipe">
       <div class="recipe-header mt-3 mb-4">
         <h1>{{ recipe.title }}</h1>
@@ -10,7 +10,6 @@
           <div class="wrapped">
             <div class="mb-3">
               <div>Ready in {{ recipe.readyInMinutes }} minutes</div>
-              <div>Likes: {{ recipe.aggregateLikes }} likes</div>
             </div>
             Ingredients:
             <ul>
@@ -32,17 +31,12 @@
           </div>
         </div>
       </div>
-      <!-- <pre>
-      {{ $route.params }}
-      {{ recipe }}
-    </pre
-      > -->
     </div>
   </div>
 </template>
 
 <script>
-import { mockGetRecipeFullDetails } from "../services/recipes.js";
+//import { mockGetRecipeFullDetails } from "../services/recipes.js";
 export default {
   data() {
     return {
@@ -53,7 +47,7 @@ export default {
   async created() {
     try {
       let response;
-      response = this.$route.params.response;
+      // response = this.$route.params.response;
 
       try {
         response = await this.axios.get(
@@ -63,15 +57,25 @@ export default {
           }
         );
 
-        response = mockGetRecipeFullDetails(this.$route.params.recipeId);
+        //response = mockGetRecipeFullDetails(this.$route.params.recipeId);
 
         console.log("response.status", response.status);
+        console.log(response);
         if (response.status !== 200) this.$router.replace("/NotFound");
+
       } catch (error) {
         console.log("error.response.status", error.response.status);
         this.$router.replace("/NotFound");
         return;
       }
+      // mark this recipe as last watched
+      this.axios.post(
+          this.$root.store.server_domain + "/users/lastWatched",
+          {
+            recipe_id : this.$route.params.recipeId,
+            withCredentials: true
+          }
+        );
 
       let {
         analyzedInstructions,
@@ -82,7 +86,7 @@ export default {
         image,
         title
       } = response.data.recipe;
-
+      
       let _instructions = analyzedInstructions
         .map((fstep) => {
           fstep.steps[0].step = fstep.name + fstep.steps[0].step;

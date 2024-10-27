@@ -24,6 +24,10 @@ export default {
     title: {
       type: String,
       required: true
+    },
+    recipeType: {
+      type: String,
+      required: true, // Must be 'random', 'my','lastWatched' or 'favorite'
     }
   },
   data() {
@@ -37,12 +41,27 @@ export default {
   methods: {
     async updateRecipes() {
       try {
-        const response = await this.axios.get(
-          this.$root.store.server_domain + "/recipes/random",
-        );
+        // Decide the API URL based on the passed recipeType prop
+        let apiUrl="";
+        switch (this.recipeType) {
+          case "random":
+            apiUrl = this.$root.store.server_domain + "/recipes/random";
+            break;
+          case "my":
+            apiUrl = this.$root.store.server_domain + "/users/myRecipes";
+            break;
+          case "favorite":
+            apiUrl = this.$root.store.server_domain + "/users/favorites";
+            break;
+          case "lastWatched":
+            apiUrl = this.$root.store.server_domain + "/users/lastWatched";
+            break;
+          default:
+            throw new Error("Invalid recipe type");
+        }
 
-        const amountToFetch = 3; // Set this to how many recipes you want to fetch
-        //const response = mockGetRecipesPreview(amountToFetch);
+        // Fetch data based on the selected recipeType
+        const response = await this.axios.get(apiUrl);
 
 
         console.log(response);

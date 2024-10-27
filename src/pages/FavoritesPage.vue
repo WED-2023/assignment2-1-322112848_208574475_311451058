@@ -1,7 +1,7 @@
 <template>
   <div class="container mt-5 border rounded shadow-sm p-4">
     <h1>My Favorites</h1>
-    <RecipePreviewList :recipes="favoriteRecipes" />
+    <RecipePreviewList recipeType="favorite" />
   </div>
 </template>
 

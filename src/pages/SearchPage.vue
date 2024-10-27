@@ -52,7 +52,6 @@
   import diets from "../assets/diets";
   import intolerances from "../assets/intolerances";
   import RecipePreview from '../components/RecipePreview.vue';
-  import { mockSearchRecipes } from "../services/recipes.js";
 export default {
   name:"searchPage",
   components: {
@@ -101,20 +100,29 @@ export default {
   methods: {
     async searchRecipes() {
       try {
-        const response = await this.axios.get(
-          this.$root.store.server_domain + "/recipes/random",
-        );
+        const params = {
+          recipeName: this.query.searchQuery,
+          cuisine: this.query.cuisine,
+          diet: this.query.diet,
+          intolerance: this.query.intolerance,
+        };
 
-        const amountToFetch = 3; // Set this to how many recipes you want to fetch
+        const filteredParams = Object.fromEntries(
+          Object.entries(params).filter(([_, value]) => value !== null && value !== undefined)
+        );
+        const response = await this.axios.get(
+          this.$root.store.server_domain + "/recipes/search",{ params: filteredParams });
+
+        //const amountToFetch = 3; // Set this to how many recipes you want to fetch
         //const response = mockSearchRecipes(amountToFetch,this.query);
         console.log(response);
-        const recipes = response.response.data.recipes;
+        const recipes = response.data.recipes;
         console.log(recipes);
         this.recipes = [];
         this.recipes.push(...recipes);
-        if (response.status==204)
+        if (response.status!=200)
           this.recipes = [];
-        this.searched =true;
+        this.searched = true;
       } catch (error) {
         console.log(error);
       }

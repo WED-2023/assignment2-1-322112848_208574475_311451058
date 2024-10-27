@@ -13,16 +13,13 @@
       <div class="col p-4 d-flex flex-column position-static overflow-hidden">
         <div class="d-flex flex-wrap justify-content-between">
           <h3>Random Recipes</h3>
-          <RecipePreviewList class="RandomRecipes center" />
+          <RecipePreviewList recipeType="random" />
         </div>
       </div>
       <div class="col p-4 d-flex flex-column position-static overflow-hidden">
         <h3>Last viewed recipes</h3>
         <RecipePreviewList v-if="$root.store.username"
-          :class="{
-            RandomRecipes: true,
-            center: true
-          }"
+          recipeType="lastWatched"
           disabled
         ></RecipePreviewList>
         <LoginBox v-else title="Please sign in to see this content"></LoginBox>

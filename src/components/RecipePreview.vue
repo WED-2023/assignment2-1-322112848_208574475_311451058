@@ -10,17 +10,17 @@
       {{ recipe.summary }}
     </b-card-text>
     <div class="icons">
-      <i v-if="recipe.gluten" class="fas fa-bread-slice" title="Contains Gluten"></i>
       <i v-if="recipe.glutenFree" class="fas fa-ban" title="Gluten Free"></i>
       <i v-if="recipe.vegetarian" class="fas fa-carrot" title="Vegetarian"></i>
       <i v-if="recipe.vegan" class="fas fa-seedling" title="Vegan"></i>
     </div>
     <ul class="recipe-overview">
       <li>{{ recipe.readyInMinutes }} minutes</li>
-      <li>{{ recipe.aggregateLikes }} likes</li>
+      <li v-if="recipe.aggregateLikes">{{ recipe.aggregateLikes }} likes</li>
     </ul>
     <div class="buttons">
-      <b-button 
+      <b-button
+        v-if="recipe.aggregateLikes"
         @click.stop="likeRecipe" 
         :disabled="recipe.liked" 
         :variant="recipe.liked ? 'danger' : 'outline-danger'" 
@@ -49,10 +49,20 @@ export default {
     }
   },
   methods: {
-    likeRecipe() {
+    async likeRecipe() {
+
       this.recipe.aggregateLikes += 1;
       this.recipe.liked = true;
       this.$bvModal.show('like-modal-' + this.recipe.id);
+      //console.log("recipe ID ="+this.recipe.id);
+      const recipe_id = this.recipe.id;
+      this.axios.post(
+          this.$root.store.server_domain + "/users/favorites",
+          {
+            recipe_id : recipe_id,
+            withCredentials: true
+          }
+        );
     }
   }
 };
