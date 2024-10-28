@@ -205,7 +205,7 @@ import {
   sameAs,
   email
 } from "vuelidate/lib/validators";
-import { mockRegister } from "../services/auth.js";
+//import { mockRegister } from "../services/auth.js";
 export default {
   name: "Register",
   data() {
@@ -262,9 +262,9 @@ export default {
     }
   },
   mounted() {
-    // console.log("mounted");
+    console.log("mounted");
     this.countries.push(...countries);
-    // console.log($v);
+    console.log($v);
   },
   methods: {
     validateState(param) {
@@ -274,25 +274,23 @@ export default {
     async Register() {
       try {
 
-        // const response = await this.axios.post(
-        //   // "https://test-for-3-2.herokuapp.com/user/Register",
-        //   this.$root.store.server_domain + "/Register",
+        const response = await this.axios.post(
+          // "https://test-for-3-2.herokuapp.com/user/Register",
+          this.$root.store.server_domain + "/Register",
+          {
+            username: this.form.username,
+            password: this.form.password,
+            firstname: this.form.firstname,
+            lastname: this.form.lastname,
+            country: this.form.country,
+            email: this.form.email
+          }
+        );
 
-        //   {
-        //     username: this.form.username,
-        //     password: this.form.password
-        //   }
-        // );
-
-        const userDetails = {
-          username: this.form.username,
-          password: this.form.password
-        };
-
-        const response = mockRegister(userDetails);
+        //const response = mockRegister(userDetails);
 
         this.$router.push("/login");
-        // console.log(response);
+        console.log(response);
       } catch (err) {
         console.log(err.response);
         this.form.submitError = err.response.data.message;
@@ -300,12 +298,12 @@ export default {
     },
 
     onRegister() {
-      // console.log("register method called");
+      console.log("register method called");
       this.$v.form.$touch();
       if (this.$v.form.$anyError) {
         return;
       }
-      // console.log("register method go");
+      console.log("register method go");
       this.Register();
     },
 

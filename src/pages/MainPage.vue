@@ -13,8 +13,9 @@
       <div class="col p-4 d-flex flex-column position-static overflow-hidden">
         <div class="d-flex flex-wrap justify-content-between">
           <h3>Random Recipes</h3>
-          <RecipePreviewList recipeType="random" />
-        </div>
+          <RecipePreviewList ref="recipeList" recipeType="random" />
+          <button @click="refreshRandomRecipes" class="btn btn-primary">Get New Recipes</button>
+        </div>  
       </div>
       <div class="col p-4 d-flex flex-column position-static overflow-hidden">
         <h3>Last viewed recipes</h3>
@@ -42,6 +43,11 @@ export default {
   components: {
     RecipePreviewList,
     LoginBox
+  },
+  methods: {
+    refreshRandomRecipes() {
+      this.$refs.recipeList.updateRecipes(); // Calls the updateRecipes() method in RecipePreviewList
+    }
   }
 };
 </script>

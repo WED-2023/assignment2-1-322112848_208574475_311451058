@@ -6,7 +6,7 @@
     img-top
     class="recipe-card mb-2"
   >
-    <b-card-text class="recipe-description">
+    <b-card-text :v-html="recipe.summary" class="recipe-description" >
       {{ recipe.summary }}
     </b-card-text>
     <div class="icons">
